@@ -1,0 +1,19 @@
+package chain;
+
+abstract class Handler {
+    private Handler next;
+
+    public Handler setNext(Handler next){
+        this.next = next;
+        return next;
+    }
+
+    public void handle(String request) {
+        if (process(request) && next != null){
+            next.handle(request);
+        }
+    }
+
+    protected abstract boolean process(String request);
+
+}
